@@ -13,7 +13,7 @@ class MainActivity : AppCompatActivity(), TimerListener {
     // timers state storage
     private val timers = mutableListOf<Timer>()
 
-    private val timerAdapter = TimerAdapter(this)
+    private val timerAdapter = TimerAdapter(this, this)
     private var nextId = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,7 +28,9 @@ class MainActivity : AppCompatActivity(), TimerListener {
         }
 
         binding.addNewTimerButton.setOnClickListener {
-            timers.add(Timer(nextId++, 0, true))
+            val time = binding.timeEt.text.toString()
+            val timerOn = time.toLong() * 60000
+            timers.add(Timer(nextId++, timerOn, true))
             timerAdapter.submitList(timers.toList())
         }
     }

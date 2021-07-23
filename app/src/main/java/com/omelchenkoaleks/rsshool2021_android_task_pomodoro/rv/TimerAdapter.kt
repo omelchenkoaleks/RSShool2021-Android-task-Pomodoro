@@ -1,5 +1,6 @@
 package com.omelchenkoaleks.rsshool2021_android_task_pomodoro.rv
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -9,6 +10,7 @@ import com.omelchenkoaleks.rsshool2021_android_task_pomodoro.TimerListener
 import com.omelchenkoaleks.rsshool2021_android_task_pomodoro.databinding.TimerItemBinding
 
 class TimerAdapter(
+    private val context: Context,
     private val listener: TimerListener
 ) : ListAdapter<Timer, TimerViewHolder>(itemComparator) {
 
@@ -16,6 +18,7 @@ class TimerAdapter(
         val layoutInflater = LayoutInflater.from(parent.context)
         val binding = TimerItemBinding.inflate(layoutInflater, parent, false)
         return TimerViewHolder(
+            context,
             binding,
             listener,
             binding.root.context.resources
